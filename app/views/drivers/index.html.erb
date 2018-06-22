@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Drivers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>DriverId</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td><%= driver.id %></td>
+        <td><%= driver.name %></td>
+        <td><%= link_to 'Select Driver', driver %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Driver', new_driver_path %>

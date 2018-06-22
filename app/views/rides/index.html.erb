@@ -1,0 +1,53 @@
+<style>
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+</style>
+<p id="notice"><%= notice %></p>
+
+<%= button_to "Refresh", rides_path, :method => :get %>
+
+<h1>Dashboard</h1>
+
+<%= button_to 'Create Drive Account', new_driver_path, :method => :get %>
+<%= button_to 'Create Customer Account', new_customer_path, :method => :get %>
+<table>
+  <thead>
+    <tr>
+      <th>RequestID</th>
+      <th>CustomerID</th>
+      <th>Time Elapsed</th>
+      <th>Status</th>
+      <th>Driver</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rides.each do |ride| %>
+      <tr>
+        <td><%= ride.id %></td>
+        <td><%= ride.customer.id %></td>
+        <td><%= time_ago_in_words((ride.created_at).localtime) %><%= " ago"%></td>
+        <td><%= ride.status %></td>
+        <% if ride.driver_id %>
+        <td><%= ride.driver_id %></td>
+        <% else %>
+        <td><%= "none" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
